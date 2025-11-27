@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام الاستعلام عن الإجازة المرضية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-placeholder">📋</div>
+            <h1>نظام الاستعلام عن الإجازة المرضية</h1>
+        </header>
+
+        <!-- شاشة تسجيل الدخول -->
+        <div id="loginSection" class="section active">
+            <div class="login-card">
+                <h2>تسجيل الدخول</h2>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label for="employeeId">رقم الموظف</label>
+                        <input type="text" id="employeeId" required placeholder="أدخل رقم الموظف">
+                    </div>
+                    <div class="input-group">
+                        <label for="password">كلمة المرور</label>
+                        <input type="password" id="password" required placeholder="أدخل كلمة المرور">
+                    </div>
+                    <button type="submit" class="btn-primary">دخول</button>
+                </form>
+                <p class="demo-info">بيانات تجريبية: رقم الموظف: 1001 كلمة المرور: 1234</p>
+            </div>
+        </div>
+
+        <!-- شاشة لوحة التحكم -->
+        <div id="dashboardSection" class="section">
+            <div class="header-bar">
+                <span id="welcomeMessage">مرحباً، أيها الموظف</span>
+                <button onclick="logout()" class="btn-secondary">تسجيل الخروج</button>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- حالة الإجازة الحالية -->
+                <div class="status-card">
+                    <h3>حالة الإجازة الحالية</h3>
+                    <div id="currentStatus" class="status pending">قيد المراجعة</div>
+                    <div class="status-details">
+                        <p><strong>رقم الطلب:</strong> <span id="requestNumber">LM-2024-001</span></p>
+                        <p><strong>التاريخ:</strong> <span id="requestDate">2024-01-15</span></p>
+                        <p><strong>المدة:</strong> <span id="duration">3 أيام</span></p>
+                        <p><strong>نوع الإجازة:</strong> <span id="leaveType">مرضية</span></p>
+                    </div>
+                </div>
+
+                <!-- الإجراءات السريعة -->
+                <div class="actions-card">
+                    <h3>الإجراءات السريعة</h3>
+                    <button onclick="showAllLeaves()" class="btn-action">عرض جميع الإجازات</button>
+                    <button onclick="searchLeave()" class="btn-action">بحث عن إجازة</button>
+                    <button onclick="downloadReport()" class="btn-action">تحميل التقرير</button>
+                </div>
+
+                <!-- تاريخ الإجازات -->
+                <div class="history-card">
+                    <h3>آخر 3 إجازات</h3>
+                    <div id="recentLeavesList" class="leaves-list">
+                        <!-- سيتم ملؤها بالبيانات -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- شاشة جميع الإجازات -->
+        <div id="allLeavesSection" class="section">
+            <div class="header-bar">
+                <button onclick="showDashboard()" class="btn-back">← الرجوع</button>
+                <h2>سجل الإجازات المرضية</h2>
+            </div>
+            
+            <div class="table-container">
+                <table id="leavesTable" class="leaves-table">
+                    <thead>
+                        <tr>
+                            <th>رقم الطلب</th>
+                            <th>التاريخ</th>
+                            <th>المدة</th>
+                            <th>النوع</th>
+                            <th>الحالة</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leavesTableBody">
+                        <!-- سيتم ملؤها بالبيانات -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- شاشة البحث -->
+        <div id="searchSection" class="section">
+            <div class="header-bar">
+                <button onclick="showDashboard()" class="btn-back">← الرجوع</button>
+                <h2>بحث عن إجازة</h2>
+            </div>
+            
+            <div class="search-card">
+                <form id="searchForm" onsubmit="performSearch(event)">
+                    <div class="input-group">
+                        <label for="searchRequestNumber">رقم الطلب</label>
+                        <input type="text" id="searchRequestNumber" placeholder="أدخل رقم الطلب">
+                    </div>
+                    <div class="input-group">
+                        <label for="searchDate">التاريخ (من)</label>
+                        <input type="date" id="searchDate">
+                    </div>
+                    <button type="submit" class="btn-primary">بحث</button>
+                </form>
+                
+                <div id="searchResults" class="search-results">
+                    <!-- ستظهر نتائج البحث هنا -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 نظام إدارة الإجازات. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+                                                       </html>
